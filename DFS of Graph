@@ -1,0 +1,24 @@
+class Solution {
+     
+    public void dfs(ArrayList<ArrayList<Integer>> adj, boolean[] vis, int ele, ArrayList<Integer> ans){
+        vis[ele]=true;
+        ans.add(ele);
+        for(Integer i: adj.get(ele)){// this step is important, we have to traverse each element not the indices, so use this format
+            if(!vis[i]){
+                dfs(adj,vis,i,ans);
+            }
+        }
+    }
+    // Function to return a list containing the DFS traversal of the graph.
+    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        ArrayList<Integer> ans = new ArrayList<Integer>();
+        boolean[] vis= new boolean[V];
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                dfs(adj,vis,i,ans);
+            }
+        }
+        return ans;
+    }
+}
